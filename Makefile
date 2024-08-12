@@ -7,7 +7,7 @@ LANG            = en
 LANGUAGES       = en # bg cs de es fi fr id it ja ko nl pt_BR pt_PT ro ru tr zh_Hant zh_Hans
 SPHINXOPTS      =
 # Use the tag i18n to filter text based on whether we are translating or not
-SPHINXINTLOPTS  = $(SPHINXOPTS) -D language="$(LANG)" -t i18n
+SPHINXINTLOPTS  = $(SPHINXOPTS) -D language=$(LANG) -t i18n
 SPHINXBUILD     ?= sphinx-build
 SPHINXINTL      ?= sphinx-intl
 SOURCEDIR       = .
@@ -47,9 +47,9 @@ gettext:
 html:
 	echo "$(SPHINXOPTS) $(SPHINXINTLOPTS)"
 	if [ "$(LANG)" != "en" ]; then \
-		$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/html/$(LANG)" $(SPHINXINTLOPTS) $(0); \
+		$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/html/$(LANG)" $(SPHINXINTLOPTS) $(0) \
 	else \
-		$(SPHINXBUILD) -b html -nW --keep-going "$(SOURCEDIR)" "$(BUILDDIR)/html/$(LANG)" $(SPHINXOPTS) $(0); \
+		$(SPHINXBUILD) -b html -nW --keep-going "$(SOURCEDIR)" "$(BUILDDIR)/html/$(LANG)" $(SPHINXOPTS) $(0) \
 	fi
 
 latex:
