@@ -46,7 +46,11 @@ gettext:
 
 html:
 	echo "$(SPHINXOPTS) $(SPHINXINTLOPTS)"
-	$(SPHINXBUILD) -b html -nW --keep-going "$(SOURCEDIR)" "$(BUILDDIR)/html/$(LANG)" $(SPHINXOPTS) $(0)
+	if [ $(LANG) != "en" ]; then \
+		$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)/html/$(LANG)" $(SPHINXINTLOPTS) $(0); \
+	else \
+		$(SPHINXBUILD) -b html -n --keep-going "$(SOURCEDIR)" "$(BUILDDIR)/html/$(LANG)" $(SPHINXOPTS) $(0); \
+	fi
 
 latex:
 	# for LANG=ja overwrites the default latex_engine=xelatex by latex_engine=uplatex
